@@ -7,11 +7,17 @@ import GlobalOffices from '../../components/GlobalOffices';
 import Careers from '../../components/Careers';
 import Footer from '../../components/Footer';
 
+import NewHero from '../../components/ThreeDHero/NewHero';
+
+import DigitalAwakening from '../../components/DigitalAwakening/DigitalAwakening';
+
 const Homepage = () => {
     return (
         <div style={{ position: 'relative', width: '100%', overflowX: 'hidden' }}>
             <Navbar />
-            <Hero />
+            {/* <Hero /> */}
+            {/* <NewHero /> */}
+            <DigitalAwakening />
             <Services />
             {/* <WhyChooseUs /> */}
             <GlobalOffices />
