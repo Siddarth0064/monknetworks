@@ -9,7 +9,7 @@ import Footer from '../../components/Footer';
 
 import NewHero from '../../components/ThreeDHero/NewHero';
 
-import DigitalAwakening from '../../components/DigitalAwakening/DigitalAwakening';
+import DigitalInfrastructure from '../../components/DigitalInfrastructure/DigitalInfrastructure';
 
 const Homepage = () => {
     return (
@@ -17,7 +17,9 @@ const Homepage = () => {
             <Navbar />
             {/* <Hero /> */}
             {/* <NewHero /> */}
-            <DigitalAwakening />
+            {/* <DigitalAwakening /> */}
+            {/* <DigitalTakeover /> */}
+            <DigitalInfrastructure />
             <Services />
             {/* <WhyChooseUs /> */}
             <GlobalOffices />
