@@ -16,13 +16,20 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Navigation items
-    const navItems = ["Home", "Solutions", "Services", "About Us", "Careers"];
+    // Navigation items mapped to section IDs
+    const navItems = [
+        { name: "Home", id: "home" },
+        { name: "Services", id: "services" },
+        { name: "Expertise", id: "expertise" },
+        { name: "Tech Stack", id: "tech-stack" },
+        { name: "Support", id: "support" },
+        { name: "Contact", id: "contact" }
+    ];
 
     return (
         <motion.nav
-            initial={{ y: -100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
+            initial={{ y: -100 }}
+            animate={{ y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             style={{
                 position: "fixed",
@@ -34,7 +41,7 @@ const Navbar = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
                 padding: "1rem 5%",
-                backgroundColor: scrolled ? "rgba(10, 10, 10, 0.95)" : "transparent",
+                backgroundColor: scrolled ? "rgba(11, 18, 32, 0.95)" : "transparent", // Deep Navy
                 backdropFilter: scrolled ? "blur(12px)" : "none",
                 boxShadow: scrolled ? "0 4px 20px rgba(0, 0, 0, 0.5)" : "none",
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
@@ -42,26 +49,27 @@ const Navbar = () => {
             }}
         >
             {/* Logo Section */}
-            <div style={{ display: "flex", alignItems: "center", gap: "12px", cursor: "pointer" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "15px", cursor: "pointer" }} onClick={() => window.scrollTo(0, 0)}>
                 <motion.img
                     src={MonkLogo}
                     alt="Monk Networks Logo"
                     style={{
-                        height: "50px",
+                        height: "45px",
                         width: "auto",
-                        borderRadius: "10px", // Rounded corners for a softer look
-                        boxShadow: "0 4px 10px rgba(0,0,0,0.1)" // Subtle shadow
+                        borderRadius: "8px",
                     }}
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 300 }}
                 />
                 <h1
                     style={{
-                        fontSize: "1.6rem",
+                        fontSize: "1.5rem",
                         fontWeight: "700",
-                        letterSpacing: "-0.5px",
+                        letterSpacing: "1px",
                         margin: 0,
-                        fontFamily: "'Inter', sans-serif"
+                        fontFamily: "Orbitron, sans-serif",
+                        display: "flex",
+                        gap: "5px",
                     }}
                 >
                     <span style={{ color: "var(--primary-energy)" }}>Monk</span>
@@ -70,57 +78,49 @@ const Navbar = () => {
             </div>
 
             {/* Navigation Links */}
-            <ul style={{ display: "flex", gap: "40px", alignItems: "center", margin: 0, padding: 0 }}>
+            <ul style={{ display: "flex", gap: "30px", listStyle: "none", margin: 0, padding: 0, alignItems: "center" }}>
                 {navItems.map((item) => (
-                    <li key={item} style={{ position: "relative" }}>
+                    <motion.li key={item.name} style={{ position: "relative" }} whileHover="hover">
                         <a
-                            href={`#${item.toLowerCase().replace(" ", "")}`}
-                            className="nav-link"
+                            href={`#${item.id}`}
                             style={{
                                 color: "rgba(255,255,255,0.9)",
                                 fontWeight: "500",
-                                fontSize: "1rem",
+                                fontSize: "0.95rem",
                                 textDecoration: "none",
                                 position: "relative",
-                                padding: "5px 0",
-                                transition: "all 0.3s ease",
+                                paddingBottom: "5px",
+                                transition: "color 0.3s",
                                 display: "block"
                             }}
                             onMouseEnter={(e) => {
-                                e.currentTarget.style.transform = "translateY(-2px)";
                                 e.currentTarget.style.color = "var(--primary-energy)";
                             }}
                             onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = "translateY(0)";
                                 e.currentTarget.style.color = "rgba(255,255,255,0.9)";
                             }}
                         >
-                            {item}
-                            {/* Animated Underline */}
-                            <span
-                                className="hover-line"
-                                style={{
-                                    position: "absolute",
-                                    bottom: 0,
-                                    left: "50%",
-                                    width: "0%",
-                                    height: "2px",
-                                    background: "linear-gradient(90deg, var(--primary-energy), var(--professional-navy))",
-                                    transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                                    transform: "translateX(-50%)",
-                                    opacity: 0
-                                }}
-                            />
-                            <style>
-                                {`
-                                    .nav-link:hover .hover-line {
-                                        width: 100%;
-                                        opacity: 1;
-                                    }
-                                `}
-                            </style>
+                            {item.name}
                         </a>
-                    </li>
+
+                        {/* Underline Animation */}
+                        <motion.div
+                            variants={{
+                                hover: { scaleX: 1, originX: 0 }
+                            }}
+                            initial={{ scaleX: 0 }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            style={{
+                                position: "absolute",
+                                bottom: 0,
+                                left: 0,
+                                right: 0,
+                                height: "2px",
+                                background: "var(--primary-energy)",
+                                transformOrigin: "left"
+                            }}
+                        />
+                    </motion.li>
                 ))}
             </ul>
 

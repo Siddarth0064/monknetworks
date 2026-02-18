@@ -14,17 +14,18 @@ const ScrollLayout = ({ children }) => {
         restDelta: 0.001
     });
 
-    // Background transition: Deep Navy -> Slightly lighter Navy -> Dark -> Navy/Orange Hint -> Deep Navy
-    // Mapping to sections: Hero (0) -> Solutions (0.25) -> Services (0.5) -> About (0.75) -> Careers (1)
+    // Background transition: Deep Navy -> slightly lighter -> Deep Navy -> Orange Tint -> Deep Navy
+    // Adjusted for more sections
     const backgroundColor = useTransform(
         smoothProgress,
-        [0, 0.25, 0.5, 0.75, 1],
+        [0, 0.2, 0.4, 0.6, 0.8, 1],
         [
-            "#0a0a0a", // Hero (Deep Dark)
-            "#0B1220", // Solutions (Deep Navy)
-            "#0f172a", // Services (Slightly Lighter)
-            "#111827", // About (Warm twist possibly via overlay, kept dark here)
-            "#0a0a0a"  // Careers (Back to Deep Dark)
+            "#0a0a0a", // Hero
+            "#0B1220", // Services
+            "#0f172a", // Expertise
+            "#111827", // Tech Stack
+            "#1a1005", // IT Support (Subtle Orange Hint)
+            "#0a0a0a"  // Footer
         ]
     );
 
@@ -34,11 +35,24 @@ const ScrollLayout = ({ children }) => {
             style={{
                 backgroundColor,
                 position: "relative",
-                transition: "background-color 1s ease" // Fallback if motion value glitches
+                transition: "background-color 1s ease"
             }}
         >
             {/* Global Connecting Line Overlay */}
             <ConnectingLines scrollYProgress={smoothProgress} />
+
+            {/* Grid Intelligence Overlay */}
+            <div style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100vh",
+                backgroundImage: "linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
+                backgroundSize: "60px 60px",
+                pointerEvents: "none",
+                zIndex: 1
+            }} />
 
             {/* Particle Background Layer */}
             <Particles />
