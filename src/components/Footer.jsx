@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaFacebook } from "react-icons/fa";
 import NetworkLogomark from "./NetworkLogomark";
+import MonkLogo from "../assets/monk-logo-bg.png";
 
 const Footer = () => {
     const [formData, setFormData] = useState({ email: "", phone: "", message: "" });
@@ -23,9 +24,30 @@ const Footer = () => {
                 {/* Company Info */}
                 <div>
                     <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
-                        <NetworkLogomark />
-                        {/* <div style={{ width: "30px", height: "30px", background: "linear-gradient(135deg, #00f2ea, #007bff)", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: "bold" }}>M</div> */}
-                        <h2 style={{ fontSize: "1.5rem" }}>MonkNetworks</h2>
+                        {/* <NetworkLogomark /> */}
+                        <img
+                            src={MonkLogo}
+                            alt="Monk Networks"
+                            style={{
+                                height: "40px",
+                                width: "auto",
+                                borderRadius: "8px"
+                            }}
+                        />
+                        <h2
+                            style={{
+                                fontSize: "1.5rem",
+                                fontWeight: "700",
+                                letterSpacing: "1px",
+                                margin: 0,
+                                fontFamily: "Orbitron, sans-serif",
+                                display: "flex",
+                                gap: "5px",
+                            }}
+                        >
+                            <span style={{ color: "var(--primary-energy)" }}>Monk</span>
+                            <span style={{ color: "white" }}>Networks</span>
+                        </h2>
                     </div>
                     <p style={{ color: "#a0a0a0", marginBottom: "20px", lineHeight: "1.6" }}>
                         Leading the way in server infrastructure and network solutions. Connecting the world, securely.
