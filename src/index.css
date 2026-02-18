@@ -1,11 +1,18 @@
 :root {
-  --primary-color: #00f2ea;
-  --secondary-color: #007bff;
+  /* Calm Tech Palette */
+  --primary-energy: #F05A28;
+  /* Warm Orange */
+  --professional-navy: #1E3A5F;
+  /* Deep Navy Blue */
+  --accent-glow: #F5A623;
+  /* Soft Amber */
+  --bg-light: #F5F7FA;
+  /* Light warm gray */
   --bg-dark: #0a0a0a;
-  --bg-card: #121212;
-  --text-main: #ffffff;
-  --text-muted: #a0a0a0;
-  --accent-glow: rgba(0, 242, 234, 0.5);
+  /* Deep background */
+  --text-main: #1E3A5F;
+  /* Navy for text */
+  --text-light: #F5F7FA;
   --font-main: 'Inter', sans-serif;
 }
 
@@ -37,15 +44,18 @@ ul {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: var(--bg-dark);
 }
+
 ::-webkit-scrollbar-thumb {
-  background: var(--secondary-color);
+  background: var(--professional-navy);
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-color);
+  background: var(--primary-energy);
 }
 
 .container {

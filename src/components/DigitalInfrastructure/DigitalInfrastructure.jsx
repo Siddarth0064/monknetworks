@@ -11,14 +11,14 @@ const DigitalInfrastructure = () => {
     const [stage, setStage] = useState(0);
 
     useEffect(() => {
-        // Slightly slower, more fluid timing
+        // Updated: Faster, more energetic timing
         const timeline = [
-            setTimeout(() => setStage(1), 500),  // Server appears
-            setTimeout(() => setStage(2), 2500), // Cloud forms
-            setTimeout(() => setStage(3), 4000), // Panels fade in
-            setTimeout(() => setStage(4), 5500), // Links connect
+            setTimeout(() => setStage(1), 300),  // Server appears quickly
+            setTimeout(() => setStage(2), 1200), // Cloud forms
+            setTimeout(() => setStage(3), 2200), // Panels fade in
+            setTimeout(() => setStage(4), 3000), // Links connect significantly faster
             // Stage 5 used to be just Logo, now it transitions to..
-            setTimeout(() => setStage(6), 7500), // Layout Shift & Content Reveal
+            setTimeout(() => setStage(6), 3800), // Layout Shift & Content Reveal quicker
         ];
         return () => timeline.forEach(clearTimeout);
     }, []);
