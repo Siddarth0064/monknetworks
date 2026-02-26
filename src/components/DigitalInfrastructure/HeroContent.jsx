@@ -98,7 +98,7 @@ const HeroContent = ({ stage }) => {
                     color: '#fff',
                     backgroundColor: 'var(--primary-energy)',
                     border: 'none',
-                    borderRadius: '4px', // Enterprise sharp/slightly rounded
+                    borderRadius: '4px',
                     cursor: 'pointer',
                     width: 'fit-content',
                     marginTop: '20px',
