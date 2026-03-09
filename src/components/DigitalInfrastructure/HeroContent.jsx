@@ -32,82 +32,139 @@ const HeroContent = ({ stage }) => {
             style={{
                 position: 'absolute',
                 right: '5%',
-                top: '30%',
-                width: '45%',
+                top: '25%',
+                width: 'auto',
+                minWidth: '600px',
                 zIndex: 40,
                 textAlign: 'left',
                 color: '#fff',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '24px'
+                gap: '0px'
             }}
         >
-
-            {/* Headline */}
-            <motion.h1
-                variants={fadeUp}
-                style={{
-                    fontSize: '3.5rem',
-                    fontFamily: 'Orbitron, sans-serif',
-                    lineHeight: '1.2',
-                    margin: 0,
-                    color: 'white',
-                    fontWeight: '700'
-                }}
-            >
-                Empowering <span style={{ color: 'var(--primary-energy)', textShadow: "0 0 20px rgba(240, 90, 40, 0.4)" }}>Grid Management</span> Solutions
-            </motion.h1>
-
-            {/* Subheading */}
-            <motion.p
-                variants={fadeUp}
-                style={{
-                    fontSize: '1.2rem',
-                    color: 'rgba(255, 255, 255, 0.8)',
-                    lineHeight: '1.6',
-                    maxWidth: '90%'
-                }}
-            >
-                Building high-performance resilient digital infrastructures engineered for reliability, security, and limitless growth.
-            </motion.p>
-
-            {/* CTA Button with Pulse */}
-            <motion.button
+            {/* 1. Breathing Pulse Line */}
+            <motion.div
                 variants={fadeUp}
                 animate={{
+                    width: [60, 100, 60],
+                    opacity: [0.6, 1, 0.6],
                     boxShadow: [
-                        "0 0 0px rgba(240, 90, 40, 0)",
-                        "0 0 20px rgba(240, 90, 40, 0.6)",
-                        "0 0 0px rgba(240, 90, 40, 0)"
+                        '0 0 10px var(--primary-energy)',
+                        '0 0 25px var(--primary-energy)',
+                        '0 0 10px var(--primary-energy)'
                     ]
                 }}
                 transition={{
-                    boxShadow: {
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                    }
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
                 }}
-                whileHover={{ scale: 1.05, backgroundColor: "#ff6b3d" }}
-                whileTap={{ scale: 0.95 }}
                 style={{
-                    padding: '16px 42px',
+                    width: '60px',
+                    height: '2px',
+                    background: 'var(--primary-energy)',
+                    marginBottom: '20px',
+                }}
+            />
+
+            {/* 2. Headline: Compressed & Staggered Reveal */}
+            <div style={{ overflow: 'visible' }}>
+                <motion.h1
+                    variants={{
+                        hidden: { y: 100, opacity: 0 },
+                        visible: {
+                            y: 0,
+                            opacity: 1,
+                            transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                        }
+                    }}
+                    style={{
+                        fontSize: '3.2rem',
+                        fontFamily: 'Orbitron, sans-serif',
+                        lineHeight: '1',
+                        margin: 0,
+                        fontWeight: '900',
+                        letterSpacing: '-1.5px',
+                        color: 'white',
+                        textTransform: 'uppercase'
+                    }}
+                >
+                    Next-Gen
+                </motion.h1>
+            </div>
+
+            <div style={{ overflow: 'visible', marginTop: '-5px' }}>
+                <motion.h1
+                    variants={{
+                        hidden: { x: -50, opacity: 0 },
+                        visible: {
+                            x: 0,
+                            opacity: 1,
+                            transition: { delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+                        }
+                    }}
+                    style={{
+                        color: 'var(--primary-energy)',
+                        fontSize: '3.5rem',
+                        fontFamily: 'Orbitron, sans-serif',
+                        fontWeight: '900',
+                        textTransform: 'uppercase',
+                        WebkitTextStroke: '1px var(--primary-energy)',
+                        WebkitTextFillColor: 'transparent',
+                        opacity: 0.9,
+                        letterSpacing: '1px'
+                    }}
+                >
+                    Infrastructure
+                </motion.h1>
+            </div>
+
+            {/* 3. Subheading: Compact Clean */}
+            <motion.p
+                variants={fadeUp}
+                style={{
                     fontSize: '1rem',
-                    fontWeight: '600',
-                    fontFamily: 'Orbitron, sans-serif',
-                    color: '#fff',
-                    backgroundColor: 'var(--primary-energy)',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    width: 'fit-content',
+                    color: 'rgba(255, 255, 255, 0.6)',
+                    lineHeight: '1.6',
+                    fontFamily: 'Inter, sans-serif',
                     marginTop: '20px',
-                    letterSpacing: '1px'
+                    fontWeight: '300',
+                    maxWidth: '450px',
+                    letterSpacing: '0.3px'
                 }}
             >
-                GET STARTED
-            </motion.button>
+                Precision-engineered foundations for the world's most resilient enterprises.
+            </motion.p>
 
+            {/* 4. Magnetic CTA: Scaled Down */}
+            <div style={{ marginTop: '35px' }}>
+                <motion.button
+                    variants={fadeUp}
+                    whileHover={{
+                        scale: 1.05,
+                        backgroundColor: '#fff',
+                        color: '#000',
+                        boxShadow: '0 15px 30px rgba(255, 255, 255, 0.15)'
+                    }}
+                    whileTap={{ scale: 0.95 }}
+                    style={{
+                        padding: '16px 40px',
+                        fontSize: '0.9rem',
+                        fontWeight: '800',
+                        fontFamily: 'Orbitron, sans-serif',
+                        color: '#fff',
+                        background: 'var(--primary-energy)',
+                        border: 'none',
+                        borderRadius: '50px',
+                        cursor: 'pointer',
+                        letterSpacing: '1.5px',
+                        transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+                    }}
+                >
+                    GET STARTED
+                </motion.button>
+            </div>
         </motion.div>
     );
 };

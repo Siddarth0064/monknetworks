@@ -35,48 +35,161 @@ const AboutUs = () => {
             }}>
                 {/* Left Side: Graphic / Monk Illustration Placeholder */}
                 <motion.div
-                    style={{ flex: 1, position: "relative", display: "flex", justifyContent: "center" }}
-                    initial={{ opacity: 0, x: -50 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    style={{ flex: 1, position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "500px" }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    {/* Abstract Monk Halo */}
-                    <div style={{
-                        width: "300px",
-                        height: "300px",
-                        borderRadius: "50%",
-                        border: "2px solid rgba(240, 90, 40, 0.2)",
-                        position: "relative",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center"
-                    }}>
+                    {/* Spectral Iris Premium Container */}
+                    <div style={{ position: "relative", width: "400px", height: "400px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+
+                        {/* 1. Glassmorphic Orbital Rings */}
+                        {[380, 300, 220].map((size, i) => (
+                            <motion.div
+                                key={size}
+                                style={{
+                                    position: "absolute",
+                                    width: size,
+                                    height: size,
+                                    borderRadius: "50%",
+                                    border: `1px solid rgba(255, 255, 255, ${0.05 + i * 0.05})`,
+                                    backdropFilter: "blur(2px)",
+                                    background: `radial-gradient(circle, transparent 70%, rgba(30, 58, 95, ${0.05 + i * 0.02}) 100%)`,
+                                    boxShadow: `inset 0 0 20px rgba(0, 242, 234, ${0.02 + i * 0.01})`
+                                }}
+                                animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+                                transition={{ duration: 40 + i * 10, repeat: Infinity, ease: "linear" }}
+                            />
+                        ))}
+
+                        {/* 2. Technical Reticle (Crosshairs & Measurements) */}
+                        <div style={{ position: "absolute", inset: 0, opacity: 0.3, pointerEvents: "none" }}>
+                            {/* Horizontal Line */}
+                            <div style={{ position: "absolute", top: "50%", left: "10%", right: "10%", height: "1px", background: "linear-gradient(90deg, transparent, #00f2ea, transparent)" }} />
+                            {/* Vertical Line */}
+                            <div style={{ position: "absolute", left: "50%", top: "10%", bottom: "10%", width: "1px", background: "linear-gradient(180deg, transparent, #00f2ea, transparent)" }} />
+                            {/* Corner Marks */}
+                            {[0, 90, 180, 270].map(angle => (
+                                <div key={angle} style={{
+                                    position: "absolute",
+                                    width: "20px",
+                                    height: "20px",
+                                    borderTop: "1px solid #ffcc33",
+                                    borderLeft: "1px solid #ffcc33",
+                                    transform: `rotate(${angle}deg)`,
+                                    top: angle === 0 || angle === 270 ? "15%" : "85%",
+                                    left: angle === 0 || angle === 90 ? "15%" : "85%",
+                                    marginTop: angle >= 180 ? "-20px" : "0",
+                                    marginLeft: angle === 90 || angle === 180 ? "-20px" : "0"
+                                }} />
+                            ))}
+                        </div>
+
+                        {/* 3. Aperture Iris Blades (The Mechanical "Eye") */}
+                        <div style={{ position: "relative", width: "160px", height: "160px", overflow: "hidden", borderRadius: "50%", border: "2px solid rgba(255, 204, 51, 0.3)" }}>
+                            {[...Array(8)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    style={{
+                                        position: "absolute",
+                                        width: "120%",
+                                        height: "40%",
+                                        background: "linear-gradient(to right, #040812, #1e3a5f)",
+                                        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+                                        clipPath: "polygon(0 0, 100% 0, 80% 100%, 0% 100%)",
+                                        left: "50%",
+                                        top: "50%",
+                                        transformOrigin: "0% 50%",
+                                        rotate: i * 45
+                                    }}
+                                    animate={{
+                                        rotate: [i * 45, i * 45 + 10, i * 45],
+                                        opacity: [0.8, 1, 0.8]
+                                    }}
+                                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }}
+                                />
+                            ))}
+                            {/* Inner Iris Glow */}
+                            <div style={{
+                                position: "absolute",
+                                inset: "15%",
+                                borderRadius: "50%",
+                                background: "radial-gradient(circle, rgba(255, 204, 51, 0.4) 0%, transparent 80%)",
+                                zIndex: 5,
+                                filter: "blur(5px)"
+                            }} />
+                        </div>
+
+                        {/* 4. Fiber-Optic Satellite Nodes with Trailing Paths */}
+                        {[...Array(4)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                style={{ position: "absolute", width: "100%", height: "100%" }}
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 15 + i * 5, repeat: Infinity, ease: "linear" }}
+                            >
+                                <div style={{
+                                    position: "absolute",
+                                    top: "15%",
+                                    left: "50%",
+                                    width: "4px",
+                                    height: "4px",
+                                    background: "#ffcc33",
+                                    borderRadius: "50%",
+                                    boxShadow: "0 0 15px #ffcc33"
+                                }}>
+                                    {/* Tail */}
+                                    <div style={{
+                                        position: "absolute",
+                                        top: "2px",
+                                        left: "50%",
+                                        width: "1px",
+                                        height: "60px",
+                                        background: "linear-gradient(to bottom, #ffcc33, transparent)",
+                                        transformOrigin: "top",
+                                        transform: "rotate(180deg)",
+                                        opacity: 0.6
+                                    }} />
+                                </div>
+                            </motion.div>
+                        ))}
+
+                        {/* 5. Central Intelligence Heart */}
                         <motion.div
                             style={{
                                 position: "absolute",
-                                width: "100%",
-                                height: "100%",
+                                width: "40px",
+                                height: "40px",
+                                background: "radial-gradient(circle, #ffcc33 20%, #f05a28 100%)",
                                 borderRadius: "50%",
-                                border: "1px dashed rgba(30, 58, 95, 0.5)"
+                                boxShadow: "0 0 30px rgba(255, 204, 51, 0.8)",
+                                zIndex: 10
                             }}
-                            animate={{ rotate: 360 }}
-                            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                            animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
+                            transition={{ duration: 2, repeat: Infinity }}
                         />
+
+                        {/* Professional Metric Labeling */}
                         <motion.div
                             style={{
-                                width: "200px",
-                                height: "200px",
-                                background: "radial-gradient(circle, rgba(240, 90, 40, 0.1), transparent)",
-                                borderRadius: "50%"
+                                position: "absolute",
+                                top: "-20px",
+                                right: "-20px",
+                                padding: "4px 10px",
+                                border: "1px solid rgba(0, 242, 234, 0.3)",
+                                background: "rgba(4, 8, 18, 0.8)",
+                                color: "#00f2ea",
+                                fontSize: "0.65rem",
+                                fontFamily: "monospace",
+                                letterSpacing: "2px",
+                                textTransform: "uppercase"
                             }}
-                            animate={{ scale: [1, 1.1, 1] }}
-                            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                        />
-                        {/* Placeholder Text or Image */}
-                        <span style={{ color: "var(--primary-energy)", fontWeight: "bold", fontSize: "1.2rem", zIndex: 10 }}>
-                            Vision
-                        </span>
+                            animate={{ opacity: [0.4, 0.7, 0.4] }}
+                            transition={{ duration: 3, repeat: Infinity }}
+                        >
+                            Vision State: Active
+                        </motion.div>
                     </div>
                 </motion.div>
 

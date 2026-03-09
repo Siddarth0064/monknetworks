@@ -16,14 +16,12 @@ const Navbar = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Navigation items mapped to section IDs
+    // Navigation items for the multi-page structure
     const navItems = [
-        { name: "Home", id: "home" },
-        { name: "Services", id: "services" },
-        { name: "Expertise", id: "expertise" },
-        { name: "Tech Stack", id: "tech-stack" },
-        { name: "Support", id: "support" },
-        { name: "Contact", id: "contact" }
+        { name: "Home", path: "/monknetworks" },
+        { name: "Solutions", path: "/monknetworks/solutions" },
+        { name: "Digital Solutions", path: "/monknetworks/digital-solutions" },
+        { name: "About Us", path: "/monknetworks/about" },
     ];
 
     return (
@@ -40,56 +38,75 @@ const Navbar = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
-                padding: "1rem 5%",
-                backgroundColor: scrolled ? "rgba(11, 18, 32, 0.95)" : "transparent", // Deep Navy
-                backdropFilter: scrolled ? "blur(12px)" : "none",
-                boxShadow: scrolled ? "0 4px 20px rgba(0, 0, 0, 0.5)" : "none",
+                padding: scrolled ? "0.4rem 5%" : "0.8rem 5%",
+                backgroundColor: "transparent",
+                backdropFilter: scrolled ? "none" : "none", // Explicitly none for full-screen feel
+                boxShadow: "none",
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
                 color: "white",
             }}
         >
             {/* Logo Section */}
-            <div style={{ display: "flex", alignItems: "center", gap: "15px", cursor: "pointer" }} onClick={() => window.scrollTo(0, 0)}>
-                <motion.img
-                    src={MonkLogo}
-                    alt="Monk Networks Logo"
-                    style={{
-                        height: "45px",
-                        width: "auto",
-                        borderRadius: "8px",
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                />
-                <h1
-                    style={{
-                        fontSize: "1.5rem",
-                        fontWeight: "700",
-                        letterSpacing: "1px",
-                        margin: 0,
-                        fontFamily: "Orbitron, sans-serif",
-                        display: "flex",
-                        gap: "5px",
-                    }}
-                >
-                    <span style={{ color: "var(--primary-energy)" }}>Monk</span>
-                    <span style={{ color: "white", transition: "color 0.3s" }}>Networks</span>
-                </h1>
-            </div>
+            <Link to="/monknetworks" style={{ textDecoration: 'none' }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px", cursor: "pointer" }}>
+                    <motion.img
+                        src={MonkLogo}
+                        alt="Monk Networks Logo"
+                        style={{
+                            height: scrolled ? "30px" : "38px",
+                            width: "auto",
+                            borderRadius: "6px",
+                            transition: "all 0.4s ease"
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                    />
+                    <motion.h1
+                        style={{
+                            fontSize: scrolled ? "1.1rem" : "1.35rem",
+                            fontWeight: "700",
+                            letterSpacing: "1px",
+                            margin: 0,
+                            fontFamily: "Orbitron, sans-serif",
+                            display: "flex",
+                            gap: "5px",
+                            transition: "all 0.4s ease"
+                        }}
+                    >
+                        <span style={{ color: "var(--primary-energy)" }}>Monk</span>
+                        <span style={{ color: "white" }}>Networks</span>
+                    </motion.h1>
+                </div>
+            </Link>
 
-            {/* Navigation Links */}
-            <ul style={{ display: "flex", gap: "30px", listStyle: "none", margin: 0, padding: 0, alignItems: "center" }}>
+            {/* Navigation Links - Fades out on scroll */}
+            <motion.ul
+                animate={{
+                    opacity: scrolled ? 0 : 1,
+                    scale: scrolled ? 0.95 : 1,
+                    pointerEvents: scrolled ? "none" : "auto"
+                }}
+                transition={{ duration: 0.3 }}
+                style={{
+                    display: "flex",
+                    gap: "25px",
+                    listStyle: "none",
+                    margin: 0,
+                    padding: 0,
+                    alignItems: "center"
+                }}
+            >
                 {navItems.map((item) => (
                     <motion.li key={item.name} style={{ position: "relative" }} whileHover="hover">
-                        <a
-                            href={`#${item.id}`}
+                        <Link
+                            to={item.path}
                             style={{
                                 color: "rgba(255,255,255,0.9)",
                                 fontWeight: "500",
-                                fontSize: "0.95rem",
+                                fontSize: "0.9rem",
                                 textDecoration: "none",
                                 position: "relative",
-                                paddingBottom: "5px",
+                                paddingBottom: "3px",
                                 transition: "color 0.3s",
                                 display: "block"
                             }}
@@ -101,7 +118,7 @@ const Navbar = () => {
                             }}
                         >
                             {item.name}
-                        </a>
+                        </Link>
 
                         {/* Underline Animation */}
                         <motion.div
@@ -122,49 +139,49 @@ const Navbar = () => {
                         />
                     </motion.li>
                 ))}
-            </ul>
+            </motion.ul>
 
-            {/* Right Side Actions */}
-            <div style={{ display: "flex", alignItems: "center", gap: "25px" }}>
-                {/* <FaSearch
-                    style={{
-                        color: scrolled ? "var(--professional-navy)" : "white",
-                        cursor: "pointer",
-                        fontSize: "1.1rem",
-                        transition: "color 0.3s",
-                        opacity: 0.8
-                    }}
-                    onMouseEnter={(e) => e.target.style.opacity = 1}
-                    onMouseLeave={(e) => e.target.style.opacity = 0.8}
-                /> */}
-                <button
-                    style={{
-                        padding: "10px 28px",
-                        background: "linear-gradient(135deg, var(--primary-energy), #FF8C00)",
-                        border: "none",
-                        borderRadius: "50px",
-                        color: "white",
-                        fontWeight: "600",
-                        fontSize: "0.95rem",
-                        cursor: "pointer",
-                        boxShadow: "0 4px 15px rgba(240, 90, 40, 0.3)",
-                        transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
-                        letterSpacing: "0.5px"
-                    }}
-                    onMouseEnter={(e) => {
-                        e.target.style.transform = "translateY(-2px)";
-                        e.target.style.boxShadow = "0 6px 20px rgba(240, 90, 40, 0.5)";
-                    }}
-                    onMouseLeave={(e) => {
-                        e.target.style.transform = "translateY(0)";
-                        e.target.style.boxShadow = "0 4px 15px rgba(240, 90, 40, 0.3)";
-                    }}
-                >
-                    Contact Us
-                </button>
-            </div>
+            {/* Right Side Actions - Fades out on scroll */}
+            <motion.div
+                animate={{
+                    opacity: scrolled ? 0 : 1,
+                    scale: scrolled ? 0.95 : 1,
+                    pointerEvents: scrolled ? "none" : "auto"
+                }}
+                transition={{ duration: 0.3 }}
+                style={{ display: "flex", alignItems: "center", gap: "20px" }}
+            >
+                <Link to="/monknetworks/contact">
+                    <button
+                        style={{
+                            padding: "8px 22px",
+                            background: "linear-gradient(135deg, var(--primary-energy), #FF8C00)",
+                            border: "none",
+                            borderRadius: "50px",
+                            color: "white",
+                            fontWeight: "600",
+                            fontSize: "0.9rem",
+                            cursor: "pointer",
+                            boxShadow: "0 4px 15px rgba(240, 90, 40, 0.3)",
+                            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+                            letterSpacing: "0.5px"
+                        }}
+                        onMouseEnter={(e) => {
+                            e.target.style.transform = "translateY(-2px)";
+                            e.target.style.boxShadow = "0 6px 20px rgba(240, 90, 40, 0.5)";
+                        }}
+                        onMouseLeave={(e) => {
+                            e.target.style.transform = "translateY(0)";
+                            e.target.style.boxShadow = "0 4px 15px rgba(240, 90, 40, 0.3)";
+                        }}
+                    >
+                        Contact Us
+                    </button>
+                </Link>
+            </motion.div>
         </motion.nav>
     );
 };
+
 
 export default Navbar;

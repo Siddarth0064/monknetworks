@@ -17,9 +17,9 @@ const CoreExpertise = () => {
                 viewport={{ once: true }}
                 style={{ textAlign: "center", marginBottom: "5rem" }}
             >
-                <h2 style={{ fontSize: "2.5rem", color: "white", fontFamily: "Orbitron, sans-serif" }}>
+                {/* <h2 style={{ fontSize: "2.5rem", color: "white", fontFamily: "Orbitron, sans-serif" }}>
                     CORE <span style={{ color: "var(--primary-energy)" }}>EXPERTISE</span>
-                </h2>
+                </h2> */}
             </motion.div>
 
             <div style={{ maxWidth: "1000px", margin: "0 auto", position: "relative" }}>
