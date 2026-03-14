@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import useMobile from '../hooks/useMobile';
 
 const AboutUs = () => {
+    const isMobile = useMobile();
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -16,8 +18,8 @@ const AboutUs = () => {
             id="aboutus"
             ref={containerRef}
             style={{
-                padding: "8rem 5%",
-                minHeight: "80vh",
+                padding: isMobile ? "4rem 5%" : "8rem 5%",
+                minHeight: isMobile ? "auto" : "80vh",
                 overflow: "hidden",
                 position: "relative",
                 display: "flex",
@@ -27,25 +29,25 @@ const AboutUs = () => {
         >
             <div className="container" style={{
                 display: "flex",
-                flexDirection: "row", // Responsive handled via CSS if needed, default row
+                flexDirection: isMobile ? "column" : "row", // Responsive handled here
                 alignItems: "center",
-                gap: "4rem",
+                gap: isMobile ? "2rem" : "4rem",
                 width: "100%",
                 maxWidth: "1200px"
             }}>
                 {/* Left Side: Graphic / Monk Illustration Placeholder */}
                 <motion.div
-                    style={{ flex: 1, position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: "500px" }}
+                    style={{ flex: 1, position: "relative", display: "flex", justifyContent: "center", alignItems: "center", minHeight: isMobile ? "350px" : "500px" }}
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                     {/* Spectral Iris Premium Container */}
-                    <div style={{ position: "relative", width: "400px", height: "400px", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ position: "relative", width: isMobile ? "280px" : "400px", height: isMobile ? "280px" : "400px", display: "flex", alignItems: "center", justifyContent: "center" }}>
 
                         {/* 1. Glassmorphic Orbital Rings */}
-                        {[380, 300, 220].map((size, i) => (
+                        {[isMobile ? 260 : 380, isMobile ? 200 : 300, isMobile ? 140 : 220].map((size, i) => (
                             <motion.div
                                 key={size}
                                 style={{
@@ -87,7 +89,7 @@ const AboutUs = () => {
                         </div>
 
                         {/* 3. Aperture Iris Blades (The Mechanical "Eye") */}
-                        <div style={{ position: "relative", width: "160px", height: "160px", overflow: "hidden", borderRadius: "50%", border: "2px solid rgba(255, 204, 51, 0.3)" }}>
+                        <div style={{ position: "relative", width: isMobile ? "100px" : "160px", height: isMobile ? "100px" : "160px", overflow: "hidden", borderRadius: "50%", border: "2px solid rgba(255, 204, 51, 0.3)" }}>
                             {[...Array(8)].map((_, i) => (
                                 <motion.div
                                     key={i}
@@ -159,8 +161,8 @@ const AboutUs = () => {
                         <motion.div
                             style={{
                                 position: "absolute",
-                                width: "40px",
-                                height: "40px",
+                                width: isMobile ? "25px" : "40px",
+                                height: isMobile ? "25px" : "40px",
                                 background: "radial-gradient(circle, #ffcc33 20%, #f05a28 100%)",
                                 borderRadius: "50%",
                                 boxShadow: "0 0 30px rgba(255, 204, 51, 0.8)",
@@ -195,14 +197,14 @@ const AboutUs = () => {
 
                 {/* Right Side: Text Content */}
                 <motion.div
-                    style={{ flex: 1 }}
+                    style={{ flex: 1, textAlign: isMobile ? "center" : "left" }}
                     initial={{ opacity: 0, x: 50 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 1, delay: 0.2 }}
                 >
                     <h2 style={{
-                        fontSize: "2.5rem",
+                        fontSize: isMobile ? "2rem" : "2.5rem",
                         marginBottom: "1.5rem",
                         color: "white"
                     }}>
@@ -210,7 +212,7 @@ const AboutUs = () => {
                         Powering <span style={{ color: "var(--professional-navy)" }}>Technology</span>.
                     </h2>
                     <p style={{
-                        fontSize: "1.1rem",
+                        fontSize: isMobile ? "1rem" : "1.1rem",
                         lineHeight: "1.8",
                         color: "rgba(255, 255, 255, 0.8)",
                         marginBottom: "2rem"

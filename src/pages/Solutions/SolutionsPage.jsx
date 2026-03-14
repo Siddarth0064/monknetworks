@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaShieldAlt, FaCloud, FaServer, FaCogs, FaDatabase, FaArrowRight } from 'react-icons/fa';
+import useMobile from '../../hooks/useMobile';
 
 const solutions = [
     {
@@ -56,13 +57,14 @@ const solutions = [
 ];
 
 const SolutionsPage = () => {
+    const isMobile = useMobile();
     return (
         <div style={{ position: 'relative', width: '100%', minHeight: '100vh', background: 'transparent' }}>
 
             {/* Page Header: Kinetic Solution Hub */}
             <section style={{
                 position: "relative",
-                padding: "180px 5% 100px",
+                padding: isMobile ? "120px 5% 60px" : "180px 5% 100px",
                 textAlign: "center",
                 background: "transparent",
                 overflow: "hidden",
@@ -94,8 +96,8 @@ const SolutionsPage = () => {
                             opacity: { duration: 2 }
                         }}
                         style={{
-                            width: "600px",
-                            height: "600px",
+                            width: isMobile ? "300px" : "600px",
+                            height: isMobile ? "300px" : "600px",
                             margin: "0 auto",
                             border: "1px solid rgba(0, 242, 234, 0.15)",
                             borderRadius: "50%",
@@ -159,13 +161,13 @@ const SolutionsPage = () => {
                             }
                         }}
                         style={{
-                            fontSize: "4.5rem",
+                            fontSize: isMobile ? "2.5rem" : "4.5rem",
                             fontWeight: "900",
                             color: "white",
                             marginBottom: "20px",
                             fontFamily: "Orbitron, sans-serif",
                             textTransform: "uppercase",
-                            letterSpacing: "-2px",
+                            letterSpacing: isMobile ? "0px" : "-2px",
                             lineHeight: 1
                         }}
                     >
@@ -213,38 +215,46 @@ const SolutionsPage = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.8 }}
                             style={{
-                                display: "grid",
-                                gridTemplateColumns: index % 2 === 0 ? "1.2fr 1fr" : "1fr 1.2fr",
-                                gap: "80px",
+                                display: "flex",
+                                flexDirection: isMobile ? "column" : (index % 2 === 0 ? "row" : "row-reverse"),
+                                gap: isMobile ? "40px" : "80px",
                                 alignItems: "center",
-                                marginBottom: "120px"
+                                marginBottom: isMobile ? "80px" : "120px"
                             }}
                         >
                             {/* Text Content */}
-                            <div style={{ order: index % 2 === 0 ? 1 : 2 }}>
+                            <div style={{
+                                flex: 1.2,
+                                textAlign: isMobile ? "center" : "left",
+                                display: "flex",
+                                flexDirection: "column",
+                                alignItems: isMobile ? "center" : "flex-start"
+                            }}>
                                 <div style={{
                                     display: "flex",
                                     alignItems: "center",
+                                    justifyContent: isMobile ? "center" : "flex-start",
                                     gap: "15px",
                                     marginBottom: "20px",
                                     color: sol.color
                                 }}>
-                                    <span style={{ fontSize: "2rem" }}>{sol.icon}</span>
-                                    <h2 style={{ fontSize: "2.5rem", color: "white", margin: 0 }}>{sol.title}</h2>
+                                    <span style={{ fontSize: isMobile ? "1.5rem" : "2rem" }}>{sol.icon}</span>
+                                    <h2 style={{ fontSize: isMobile ? "1.8rem" : "2.5rem", color: "white", margin: 0 }}>{sol.title}</h2>
                                 </div>
                                 <p style={{ fontSize: "1.1rem", color: "rgba(255,255,255,0.8)", lineHeight: "1.8", marginBottom: "30px" }}>
                                     {sol.details}
                                 </p>
 
-                                <div style={{ marginBottom: "40px" }}>
+                                <div style={{ marginBottom: "40px", display: "flex", flexDirection: "column", alignItems: isMobile ? "center" : "flex-start" }}>
                                     <h4 style={{ color: "white", marginBottom: "15px", fontSize: "1.2rem" }}>Key Benefits:</h4>
-                                    <ul style={{ listStyle: "none", padding: 0 }}>
+                                    <ul style={{ listStyle: "none", padding: 0, textAlign: isMobile ? "center" : "left" }}>
                                         {sol.benefits.map((benefit, i) => (
                                             <li key={i} style={{
                                                 color: "rgba(255,255,255,0.7)",
                                                 marginBottom: "10px",
                                                 display: "flex",
                                                 alignItems: "center",
+                                                justifyContent: isMobile ? "center" : "flex-start",
                                                 gap: "10px"
                                             }}>
                                                 <FaArrowRight style={{ color: sol.color, fontSize: "0.8rem" }} />
@@ -255,7 +265,7 @@ const SolutionsPage = () => {
                                 </div>
 
                                 <motion.button
-                                    whileHover={{ x: 10 }}
+                                    whileHover={{ x: isMobile ? 0 : 10 }}
                                     style={{
                                         padding: "12px 30px",
                                         background: "transparent",
@@ -266,7 +276,9 @@ const SolutionsPage = () => {
                                         fontWeight: "600",
                                         display: "flex",
                                         alignItems: "center",
-                                        gap: "10px"
+                                        justifyContent: "center",
+                                        gap: "10px",
+                                        margin: isMobile ? "0 auto" : "0"
                                     }}
                                 >
                                     Discuss this Solution <FaArrowRight />
@@ -275,8 +287,9 @@ const SolutionsPage = () => {
 
                             {/* Diagram Interaction / Visual */}
                             <div style={{
-                                order: index % 2 === 0 ? 2 : 1,
-                                height: "350px",
+                                flex: 1,
+                                height: isMobile ? "250px" : "350px",
+                                width: "100%",
                                 background: "rgba(255,255,255,0.02)",
                                 borderRadius: "30px",
                                 border: "1px solid rgba(255,255,255,0.05)",
@@ -317,12 +330,12 @@ const SolutionsPage = () => {
 
             {/* CTA */}
             <section style={{
-                padding: "100px 5%",
+                padding: isMobile ? "60px 5%" : "100px 5%",
                 textAlign: "center",
                 background: "rgba(240, 90, 40, 0.05)",
                 borderTop: "1px solid rgba(240, 90, 40, 0.1)"
             }}>
-                <h2 style={{ fontSize: "2.5rem", color: "white", marginBottom: "30px" }}>Unsure which solution fits your business?</h2>
+                <h2 style={{ fontSize: isMobile ? "1.8rem" : "2.5rem", color: "white", marginBottom: "30px" }}>Unsure which solution fits your business?</h2>
                 <button style={{
                     padding: "18px 45px",
                     background: "var(--primary-energy)",

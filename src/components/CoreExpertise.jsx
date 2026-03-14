@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import useMobile from '../hooks/useMobile';
 
 const expertiseData = [
     { title: "Network Architecture", description: "Designing robust, scalable backbones for enterprise connectivity.", year: "FOUNDATION" },
@@ -9,6 +10,7 @@ const expertiseData = [
 ];
 
 const CoreExpertise = () => {
+    const isMobile = useMobile();
     return (
         <section style={{ padding: "100px 5%", position: "relative" }}>
             <motion.div
@@ -26,12 +28,12 @@ const CoreExpertise = () => {
                 {/* Vertical Line */}
                 <div style={{
                     position: "absolute",
-                    left: "50%",
+                    left: isMobile ? "20px" : "50%",
                     top: "0",
                     bottom: "0",
                     width: "2px",
                     background: "rgba(255,255,255,0.1)",
-                    transform: "translateX(-50%)"
+                    transform: isMobile ? "none" : "translateX(-50%)"
                 }}>
                     <motion.div
                         initial={{ height: "0%" }}
@@ -49,7 +51,7 @@ const CoreExpertise = () => {
                 {expertiseData.map((item, index) => (
                     <div key={index} style={{
                         display: "flex",
-                        justifyContent: index % 2 === 0 ? "flex-end" : "flex-start",
+                        justifyContent: isMobile ? "flex-start" : (index % 2 === 0 ? "flex-end" : "flex-start"),
                         position: "relative",
                         paddingBottom: "80px",
                         alignItems: "center"
@@ -58,27 +60,28 @@ const CoreExpertise = () => {
                         {/* Center Node */}
                         <div style={{
                             position: "absolute",
-                            left: "50%",
+                            left: isMobile ? "20px" : "50%",
                             top: "0",
                             width: "20px",
                             height: "20px",
                             background: "#0B1220",
                             border: "2px solid var(--primary-energy)",
                             borderRadius: "50%",
-                            transform: "translate(-50%, 0%)",
+                            transform: isMobile ? "translate(-50%, 0%)" : "translate(-50%, 0%)",
                             zIndex: 2,
                             boxShadow: "0 0 15px rgba(240, 90, 40, 0.5)"
                         }} />
 
                         <motion.div
-                            initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                            initial={{ opacity: 0, x: isMobile ? 30 : (index % 2 === 0 ? -50 : 50) }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.6, delay: 0.2 }}
                             style={{
-                                width: "45%",
-                                textAlign: index % 2 === 0 ? "right" : "left",
-                                padding: "0 40px"
+                                width: isMobile ? "calc(100% - 40px)" : "45%",
+                                textAlign: isMobile ? "left" : (index % 2 === 0 ? "right" : "left"),
+                                padding: isMobile ? "0 0 0 40px" : "0 40px",
+                                marginLeft: isMobile ? "20px" : "0"
                             }}
                         >
                             <span style={{

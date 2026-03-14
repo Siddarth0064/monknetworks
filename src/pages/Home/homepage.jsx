@@ -4,8 +4,10 @@ import Services from '../../components/Services';
 import AboutUs from '../../components/AboutUs';
 import WhyChooseUs from '../../components/WhyChooseUs';
 import { motion } from 'framer-motion';
+import useMobile from '../../hooks/useMobile';
 
 const Homepage = () => {
+    const isMobile = useMobile();
     return (
         <>
             {/* 1. Hero: Grid Intelligence */}
@@ -30,7 +32,7 @@ const Homepage = () => {
 
             {/* 5. Call to Action */}
             <section style={{
-                padding: "100px 5%",
+                padding: isMobile ? "60px 5%" : "100px 5%",
                 textAlign: "center",
                 background: "rgba(11, 18, 32, 0.4)", // Translucent to show animated background
                 color: "white"
@@ -40,7 +42,7 @@ const Homepage = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <h2 style={{ fontSize: "2.5rem", marginBottom: "20px" }}>Ready to Transform Your <span style={{ color: "var(--primary-energy)" }}>Infrastructure?</span></h2>
+                    <h2 style={{ fontSize: isMobile ? "1.8rem" : "2.5rem", marginBottom: "20px" }}>Ready to Transform Your <span style={{ color: "var(--primary-energy)" }}>Infrastructure?</span></h2>
                     <p style={{ fontSize: "1.2rem", opacity: 0.8, marginBottom: "40px", maxWidth: "800px", margin: "0 auto 40px" }}>
                         Join hundreds of enterprises that trust Monk Networks for their mission-critical digital systems.
                     </p>

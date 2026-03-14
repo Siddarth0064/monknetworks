@@ -6,14 +6,16 @@ import {
     FaReact, FaNodeJs, FaAws, FaDocker, FaDatabase, FaBolt
 } from 'react-icons/fa';
 import { SiVercel, SiNextdotjs, SiTailwindcss, SiPostgresql } from 'react-icons/si';
+import useMobile from '../../hooks/useMobile';
 
 const DigitalSolutionsPage = () => {
+    const isMobile = useMobile();
     return (
         <div style={{ background: '#030305', color: 'white', minHeight: '100vh', paddingBottom: '100px' }}>
 
             {/* 1. HERO SECTION */}
             <section style={{
-                height: '80vh',
+                height: isMobile ? '60vh' : '80vh',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -51,12 +53,12 @@ const DigitalSolutionsPage = () => {
 
             {/* 2. PERSPECTIVE SPLIT SHOWCASE (Capabilities Re-imagined) */}
             <section style={{ maxWidth: '1400px', margin: '0 auto', padding: '100px 20px' }}>
-                <div style={{ textAlign: 'center', marginBottom: '80px' }}>
-                    <h2 style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '20px', letterSpacing: '-2px' }}>Our Capabilities</h2>
+                <div style={{ textAlign: 'center', marginBottom: isMobile ? '40px' : '80px' }}>
+                    <h2 style={{ fontSize: isMobile ? '2.5rem' : '3.5rem', fontWeight: '900', marginBottom: '20px', letterSpacing: '-2px' }}>Our Capabilities</h2>
                     <div style={{ height: '4px', width: '80px', background: '#00f2ea', margin: '0 auto' }} />
                 </div>
 
-                <CapabilitiesShowcase />
+                <CapabilitiesShowcase isMobile={isMobile} />
             </section>
 
             {/* 3. THE FABRICATION PROCESS */}
@@ -67,7 +69,7 @@ const DigitalSolutionsPage = () => {
                         <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '1.2rem' }}>How we turn vision into technical reality.</p>
                     </div>
 
-                    <KineticPipeline />
+                    <KineticPipeline isMobile={isMobile} />
                 </div>
             </section>
 
@@ -103,8 +105,8 @@ const DigitalSolutionsPage = () => {
             </section>
 
             {/* 5. CTA SECTION */}
-            <section style={{ textAlign: 'center', padding: '150px 20px', background: 'linear-gradient(to bottom, #030305, #050510)' }}>
-                <h2 style={{ fontSize: '3.5rem', fontWeight: '900', marginBottom: '30px' }}>Ready to Synthesize Your Vision?</h2>
+            <section style={{ textAlign: 'center', padding: isMobile ? '80px 20px' : '150px 20px', background: 'linear-gradient(to bottom, #030305, #050510)' }}>
+                <h2 style={{ fontSize: isMobile ? '2rem' : '3.5rem', fontWeight: '900', marginBottom: '30px' }}>Ready to Synthesize Your Vision?</h2>
                 <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: '1.4rem', maxWidth: '700px', margin: '0 auto 50px' }}>
                     Let's discuss how our technical expertise can drive your next digital transformation.
                 </p>
@@ -135,7 +137,7 @@ const DigitalSolutionsPage = () => {
 /**
  * PERSPECTIVE SPLIT SHOWCASE component
  */
-const CapabilitiesShowcase = () => {
+const CapabilitiesShowcase = ({ isMobile }) => {
     const [activeIdx, setActiveIdx] = useState(0);
 
     const capabilities = [
@@ -178,12 +180,12 @@ const CapabilitiesShowcase = () => {
     return (
         <div style={{
             display: 'flex',
-            gap: '40px',
+            gap: isMobile ? '30px' : '40px',
             alignItems: 'center',
-            flexDirection: window.innerWidth < 1100 ? 'column' : 'row'
+            flexDirection: isMobile ? 'column' : 'row'
         }}>
             {/* SELECTION LIST (LEFT) - COMPACTED */}
-            <div style={{ flex: '0 0 420px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
+            <div style={{ flex: isMobile ? '1' : '0 0 420px', width: isMobile ? '100%' : 'auto', display: 'flex', flexDirection: 'column', gap: '15px' }}>
                 {capabilities.map((item, i) => (
                     <motion.div
                         key={i}
@@ -222,7 +224,7 @@ const CapabilitiesShowcase = () => {
                         </span>
 
                         <span style={{
-                            fontSize: '1.6rem',
+                            fontSize: isMobile ? '1.2rem' : '1.6rem',
                             fontWeight: '800',
                             color: activeIdx === i ? 'white' : 'rgba(255,255,255,0.3)',
                             letterSpacing: '-0.5px'
@@ -244,11 +246,11 @@ const CapabilitiesShowcase = () => {
                         transition={{ duration: 0.4, ease: "circOut" }}
                         style={{
                             width: '100%',
-                            minHeight: '440px',
+                            minHeight: isMobile ? 'auto' : '440px',
                             background: `radial-gradient(circle at 100% 0%, ${current.color}12 0%, rgba(3,3,5,1) 85%)`,
                             border: `1px solid ${current.color}15`,
                             borderRadius: '32px',
-                            padding: '50px 60px',
+                            padding: isMobile ? '40px 30px' : '50px 60px',
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -297,7 +299,7 @@ const CapabilitiesShowcase = () => {
                             initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.25 }}
-                            style={{ fontSize: '3rem', fontWeight: '999', lineHeight: 1.1, marginBottom: '25px', letterSpacing: '-1.5px' }}
+                            style={{ fontSize: isMobile ? '2rem' : '3rem', fontWeight: '999', lineHeight: 1.1, marginBottom: '25px', letterSpacing: '-1.5px' }}
                         >
                             {current.title.toUpperCase()}
                         </motion.h3>
@@ -333,7 +335,7 @@ const CapabilitiesShowcase = () => {
 /**
  * KINETIC TECHNICAL PIPELINE component
  */
-const KineticPipeline = () => {
+const KineticPipeline = ({ isMobile }) => {
     const steps = [
         { num: "01", icon: <FaLightbulb />, title: "Strategy", desc: "Extracting business logic and defining the strategic architectural blueprint." },
         { num: "02", icon: <FaDraftingCompass />, title: "Design", desc: "Kinetic UI/UX fabrication focused on performance and aesthetic excellence." },
@@ -345,8 +347,8 @@ const KineticPipeline = () => {
         <div style={{
             display: 'flex',
             justifyContent: 'space-between',
-            flexDirection: window.innerWidth < 1100 ? 'column' : 'row',
-            gap: '60px',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '40px' : '60px',
             position: 'relative',
             padding: '40px 0'
         }}>
@@ -359,7 +361,7 @@ const KineticPipeline = () => {
                 height: '1px',
                 background: 'linear-gradient(90deg, transparent, rgba(0, 242, 234, 0.4) 50%, transparent)',
                 zIndex: 0,
-                display: window.innerWidth < 1100 ? 'none' : 'block'
+                display: isMobile ? 'none' : 'block'
             }} />
 
             {steps.map((step, i) => (

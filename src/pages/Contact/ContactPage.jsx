@@ -2,18 +2,20 @@ import React from 'react';
 import GlobalOffices from '../../components/GlobalOffices';
 import { motion } from 'framer-motion';
 import { FaPhone, FaEnvelope, FaMapMarkerAlt } from 'react-icons/fa';
+import useMobile from '../../hooks/useMobile';
 
 const ContactPage = () => {
+    const isMobile = useMobile();
     return (
         <div style={{ position: 'relative', width: '100%', minHeight: '100vh', background: 'transparent' }}>
 
             {/* Header - "Signal Lock" Cinematic Hero */}
-            <section style={{ padding: "140px 5% 60px", textAlign: "center", position: "relative", overflow: "hidden" }}>
+            <section style={{ padding: isMobile ? "100px 5% 40px" : "140px 5% 60px", textAlign: "center", position: "relative", overflow: "hidden" }}>
 
                 {/* Decorative radial glow */}
                 <div style={{
                     position: "absolute", top: "30%", left: "50%", transform: "translate(-50%, -50%)",
-                    width: "600px", height: "400px",
+                    width: isMobile ? "300px" : "600px", height: isMobile ? "200px" : "400px",
                     background: "radial-gradient(ellipse, rgba(0,242,234,0.07) 0%, transparent 70%)",
                     pointerEvents: "none", zIndex: 0
                 }} />
@@ -121,9 +123,9 @@ const ContactPage = () => {
                 <div style={{
                     maxWidth: "1200px",
                     margin: "0 auto",
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
-                    gap: "60px"
+                    display: "flex",
+                    flexDirection: isMobile ? "column" : "row",
+                    gap: isMobile ? "40px" : "60px"
                 }}>
                     {/* Contact Form */}
                     <motion.div
@@ -132,9 +134,10 @@ const ContactPage = () => {
                         viewport={{ once: true }}
                         style={{
                             background: "rgba(255,255,255,0.03)",
-                            padding: "40px",
+                            padding: isMobile ? "30px 20px" : "40px",
                             borderRadius: "20px",
-                            border: "1px solid rgba(255,255,255,0.05)"
+                            border: "1px solid rgba(255,255,255,0.05)",
+                            width: "100%"
                         }}
                     >
                         <h3 style={{ color: "white", fontSize: "1.8rem", marginBottom: "30px" }}>Send us a Message</h3>

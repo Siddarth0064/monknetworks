@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import useMobile from '../../hooks/useMobile';
 import ServerRack from './ServerRack';
 import AmorphousCloud from './AmorphousCloud';
 import OsPanels from './OsPanels';
@@ -10,6 +11,7 @@ import HeroContent from './HeroContent';
 
 const DigitalInfrastructure = () => {
     const [stage, setStage] = useState(0);
+    const isMobile = useMobile();
 
     useEffect(() => {
         // Updated: Faster, more energetic timing
@@ -45,8 +47,9 @@ const DigitalInfrastructure = () => {
             <motion.div
                 initial={{ x: 0, scale: 1 }}
                 animate={{
-                    x: stage >= 6 ? '-25%' : '0%', // Shift Left
-                    scale: stage >= 6 ? 0.9 : 1.05   // Slight scale down to fit side
+                    x: stage >= 6 ? (isMobile ? '0%' : '-25%') : '0%', // No shift on mobile
+                    y: stage >= 6 ? (isMobile ? '15%' : '0%') : '0%',  // Shift down on mobile
+                    scale: stage >= 6 ? (isMobile ? 0.6 : 0.9) : 1.05   // Scale down more on mobile
                 }}
                 transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }} // Enterprise smooth curve
                 style={{
@@ -97,9 +100,9 @@ const DigitalInfrastructure = () => {
                     }}
                 >
                     <h1 style={{
-                        fontSize: '3rem',
+                        fontSize: isMobile ? '1.8rem' : '3rem',
                         fontFamily: 'Orbitron, sans-serif',
-                        letterSpacing: '5px',
+                        letterSpacing: isMobile ? '2px' : '5px',
                         textShadow: '0 0 20px rgba(0, 242, 234, 0.5)'
                     }}>
                         MONK NETWORKS

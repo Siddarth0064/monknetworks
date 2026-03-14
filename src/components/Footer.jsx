@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaLinkedin, FaTwitter, FaFacebook, FaInstagram, FaArrowRight, FaChevronRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import useMobile from "../hooks/useMobile";
 import MonkLogo from "../assets/monk-logo-bg.png";
 
 const Footer = () => {
     const [formData, setFormData] = useState({ email: "", phone: "", message: "" });
     const [hoveredLink, setHoveredLink] = useState(null);
+    const isMobile = useMobile();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -79,11 +81,11 @@ const Footer = () => {
             }} />
 
             {/* Main Footer Content */}
-            <div className="container" style={{ padding: "70px 5% 50px" }}>
+            <div className="container" style={{ padding: isMobile ? "50px 5% 30px" : "70px 5% 50px" }}>
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: "2fr 1fr 1fr 1.5fr",
-                    gap: "60px",
+                    gridTemplateColumns: isMobile ? "1fr" : "2fr 1fr 1fr 1.5fr",
+                    gap: isMobile ? "40px" : "60px",
                     alignItems: "start"
                 }}>
 
@@ -276,10 +278,11 @@ const Footer = () => {
                 borderTop: "1px solid rgba(255,255,255,0.06)",
                 padding: "20px 5%",
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: isMobile ? "center" : "space-between",
                 alignItems: "center",
-                flexWrap: "wrap",
-                gap: "12px"
+                flexDirection: isMobile ? "column" : "row",
+                textAlign: isMobile ? "center" : "left",
+                gap: "15px"
             }}>
                 <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "0.82rem" }}>
                     © {new Date().getFullYear()} <span style={{ color: "rgba(255,255,255,0.5)" }}>Monk Networks</span>. All rights reserved.

@@ -2,6 +2,7 @@ import React from "react";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
 import { FaProjectDiagram, FaUserTie, FaClock, FaRocket, FaShieldAlt, FaHandshake } from "react-icons/fa";
+import useMobile from "../hooks/useMobile";
 
 const stats = [
     { id: 1, number: 3500, label: "Projects", suffix: "+", icon: <FaProjectDiagram /> },
@@ -31,6 +32,7 @@ const cards = [
 ];
 
 const WhyChooseUs = () => {
+    const isMobile = useMobile();
     const containerVariants = {
         hidden: { opacity: 0 },
         visible: {
@@ -52,7 +54,7 @@ const WhyChooseUs = () => {
     };
 
     return (
-        <section id="whyus" style={{ padding: "120px 20px", background: "transparent", position: "relative" }}>
+        <section id="whyus" style={{ padding: isMobile ? "80px 20px" : "120px 20px", background: "transparent", position: "relative" }}>
             <div className="container">
 
                 {/* Header Section */}
@@ -60,24 +62,24 @@ const WhyChooseUs = () => {
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    style={{ textAlign: "center", marginBottom: "80px" }}
+                    style={{ textAlign: "center", marginBottom: isMobile ? "40px" : "80px" }}
                 >
                     <h2 style={{
-                        fontSize: "3.5rem",
+                        fontSize: isMobile ? "1.8rem" : "3.5rem",
                         fontWeight: "800",
                         background: "linear-gradient(to bottom, #ffffff 0%, rgba(255,255,255,0.4) 100%)",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         marginBottom: "1rem",
-                        letterSpacing: "-1px"
+                        letterSpacing: isMobile ? "0px" : "-1px"
                     }}>
                         STRATEGIC IMPACT
                     </h2>
                     <p style={{
-                        fontSize: "1.2rem",
+                        fontSize: isMobile ? "0.8rem" : "1.2rem",
                         color: "var(--primary-energy)",
                         fontWeight: "600",
-                        letterSpacing: "4px",
+                        letterSpacing: isMobile ? "2px" : "4px",
                         textTransform: "uppercase"
                     }}>
                         Built for Impact. Chosen for Excellence.
@@ -92,24 +94,31 @@ const WhyChooseUs = () => {
                     viewport={{ once: true }}
                     style={{
                         display: "flex",
-                        justifyContent: "center",
-                        flexWrap: "wrap",
-                        marginBottom: "100px",
-                        gap: "60px"
+                        justifyContent: isMobile ? "flex-start" : "center",
+                        flexWrap: isMobile ? "nowrap" : "wrap",
+                        overflowX: isMobile ? "auto" : "visible",
+                        paddingBottom: isMobile ? "20px" : "0",
+                        marginBottom: isMobile ? "40px" : "100px",
+                        gap: isMobile ? "20px" : "60px",
+                        scrollbarWidth: "none", // Hide scrollbar for clean look
+                        msOverflowStyle: "none"
                     }}
                 >
                     {stats.map((stat) => (
                         <motion.div
                             key={stat.id}
                             variants={itemVariants}
-                            style={{ textAlign: "center", minWidth: "200px" }}
+                            style={{
+                                textAlign: "center",
+                                minWidth: isMobile ? "110px" : "200px"
+                            }}
                         >
-                            <div style={{ fontSize: "2.5rem", color: "var(--primary-energy)", marginBottom: "15px", opacity: 0.8 }}>{stat.icon}</div>
-                            <h3 style={{ fontSize: "4rem", fontWeight: "900", color: "white", marginBottom: "5px", letterSpacing: "-2px" }}>
+                            <div style={{ fontSize: isMobile ? "1.2rem" : "2.5rem", color: "var(--primary-energy)", marginBottom: "5px", opacity: 0.8 }}>{stat.icon}</div>
+                            <h3 style={{ fontSize: isMobile ? "1.5rem" : "4rem", fontWeight: "900", color: "white", marginBottom: "3px", letterSpacing: "-1px" }}>
                                 <CountUp end={stat.number} duration={3} enableScrollSpy />
                                 <span style={{ color: "var(--primary-energy)" }}>{stat.suffix}</span>
                             </h3>
-                            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9rem", fontWeight: "600", textTransform: "uppercase", letterSpacing: "3px" }}>{stat.label}</p>
+                            <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.6rem", fontWeight: "600", textTransform: "uppercase", letterSpacing: "1px" }}>{stat.label}</p>
                         </motion.div>
                     ))}
                 </motion.div>
@@ -120,7 +129,7 @@ const WhyChooseUs = () => {
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
-                    style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px" }}
+                    style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: "30px" }}
                 >
                     {cards.map((card, index) => (
                         <motion.div
@@ -130,7 +139,7 @@ const WhyChooseUs = () => {
                             style={{
                                 background: "rgba(255, 255, 255, 0.03)",
                                 backdropFilter: "blur(12px)",
-                                padding: "50px 40px",
+                                padding: isMobile ? "30px 20px" : "50px 40px",
                                 borderRadius: "24px",
                                 border: "1px solid rgba(255, 255, 255, 0.05)",
                                 position: "relative",

@@ -1,7 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import useMobile from '../../hooks/useMobile';
 
 const HeroContent = ({ stage }) => {
+    const isMobile = useMobile();
     // Reveal text only after the shift starts (Stage 6)
     if (stage < 6) return null;
 
@@ -31,15 +33,17 @@ const HeroContent = ({ stage }) => {
             variants={container}
             style={{
                 position: 'absolute',
-                right: '5%',
-                top: '25%',
-                width: 'auto',
-                minWidth: '600px',
+                right: isMobile ? '5%' : '10%',
+                left: isMobile ? '5%' : 'auto',
+                top: isMobile ? '30%' : '25%',
+                width: isMobile ? '90%' : 'auto',
+                minWidth: isMobile ? 'unset' : '600px',
                 zIndex: 40,
-                textAlign: 'left',
+                textAlign: isMobile ? 'center' : 'right',
                 color: '#fff',
                 display: 'flex',
                 flexDirection: 'column',
+                alignItems: isMobile ? 'center' : 'flex-end',
                 gap: '0px'
             }}
         >
@@ -80,12 +84,12 @@ const HeroContent = ({ stage }) => {
                         }
                     }}
                     style={{
-                        fontSize: '3.2rem',
+                        fontSize: isMobile ? '1.8rem' : '3.2rem',
                         fontFamily: 'Orbitron, sans-serif',
-                        lineHeight: '1',
+                        lineHeight: '1.2',
                         margin: 0,
                         fontWeight: '900',
-                        letterSpacing: '-1.5px',
+                        letterSpacing: isMobile ? '0px' : '-1.5px',
                         color: 'white',
                         textTransform: 'uppercase'
                     }}
@@ -106,14 +110,14 @@ const HeroContent = ({ stage }) => {
                     }}
                     style={{
                         color: 'var(--primary-energy)',
-                        fontSize: '3.5rem',
+                        fontSize: isMobile ? '1.7rem' : '3.5rem',
                         fontFamily: 'Orbitron, sans-serif',
                         fontWeight: '900',
                         textTransform: 'uppercase',
-                        WebkitTextStroke: '1px var(--primary-energy)',
+                        WebkitTextStroke: isMobile ? '0.5px var(--primary-energy)' : '1px var(--primary-energy)',
                         WebkitTextFillColor: 'transparent',
                         opacity: 0.9,
-                        letterSpacing: '1px'
+                        letterSpacing: isMobile ? '0.5px' : '1px'
                     }}
                 >
                     Infrastructure
@@ -124,13 +128,14 @@ const HeroContent = ({ stage }) => {
             <motion.p
                 variants={fadeUp}
                 style={{
-                    fontSize: '1rem',
+                    fontSize: isMobile ? '0.9rem' : '1rem',
                     color: 'rgba(255, 255, 255, 0.6)',
                     lineHeight: '1.6',
                     fontFamily: 'Inter, sans-serif',
                     marginTop: '20px',
                     fontWeight: '300',
                     maxWidth: '450px',
+                    textAlign: isMobile ? 'center' : 'right',
                     letterSpacing: '0.3px'
                 }}
             >

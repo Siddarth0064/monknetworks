@@ -1,14 +1,16 @@
 import CoreExpertise from '../../components/CoreExpertise';
 import { motion } from 'framer-motion';
 import { FaEye, FaRocket, FaHistory, FaUsers } from 'react-icons/fa';
+import useMobile from '../../hooks/useMobile';
 
 const AboutPage = () => {
+    const isMobile = useMobile();
     return (
         <div style={{ position: 'relative', width: '100%', minHeight: '100vh', background: 'transparent' }}>
 
             {/* 1. KINETIC ARRIVAL HERO */}
             <section style={{
-                height: '80vh',
+                height: isMobile ? '60vh' : '80vh',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -24,8 +26,8 @@ const AboutPage = () => {
                     transition={{ duration: 1.5, ease: "easeOut" }}
                     style={{
                         position: 'absolute',
-                        width: '600px',
-                        height: '600px',
+                        width: isMobile ? '300px' : '600px',
+                        height: isMobile ? '300px' : '600px',
                         background: 'radial-gradient(circle, rgba(0, 242, 234, 0.03) 0%, transparent 70%)',
                         zIndex: 0
                     }}
@@ -36,7 +38,7 @@ const AboutPage = () => {
                         initial={{ opacity: 0, letterSpacing: "20px" }}
                         animate={{ opacity: 1, letterSpacing: "10px" }}
                         transition={{ duration: 1 }}
-                        style={{ color: "var(--primary-energy)", textTransform: "uppercase", fontSize: "0.9rem", marginBottom: "30px", fontWeight: "900" }}
+                        style={{ color: "var(--primary-energy)", textTransform: "uppercase", fontSize: isMobile ? "0.75rem" : "0.9rem", marginBottom: "30px", fontWeight: "900", letterSpacing: isMobile ? "5px" : "10px" }}
                     >
                         The Architecture of Purpose
                     </motion.h5>
@@ -52,7 +54,7 @@ const AboutPage = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.5 }}
-                        style={{ fontSize: "1.4rem", color: "rgba(255,255,255,0.5)", maxWidth: "700px", margin: "0 auto", lineHeight: 1.6, fontWeight: "300" }}
+                        style={{ fontSize: isMobile ? "1.1rem" : "1.4rem", color: "rgba(255,255,255,0.5)", maxWidth: "700px", margin: "0 auto", lineHeight: 1.6, fontWeight: "300" }}
                     >
                         We don't just build systems; we engineer the digital fabric of tomorrow with precision, resilience, and unyielding purpose.
                     </motion.p>
@@ -65,14 +67,14 @@ const AboutPage = () => {
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '80px',
-                    marginBottom: '150px',
-                    flexDirection: window.innerWidth < 1100 ? 'column' : 'row'
+                    gap: isMobile ? '40px' : '80px',
+                    marginBottom: isMobile ? '80px' : '150px',
+                    flexDirection: isMobile ? 'column' : 'row'
                 }}>
-                    <div style={{ flex: 1 }}>
-                        <SpectralIris />
+                    <div style={{ flex: 1, width: '100%' }}>
+                        <SpectralIris isMobile={isMobile} />
                     </div>
-                    <div style={{ flex: 1 }}>
+                    <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'left' }}>
                         <motion.h4
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -83,7 +85,7 @@ const AboutPage = () => {
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            style={{ fontSize: "3.5rem", fontWeight: "900", color: "white", marginBottom: "30px", letterSpacing: "-2px" }}
+                            style={{ fontSize: isMobile ? "2.2rem" : "3.5rem", fontWeight: "900", color: "white", marginBottom: "30px", letterSpacing: isMobile ? "0px" : "-2px" }}
                         >
                             The Global Benchmark for <span style={{ color: "var(--primary-energy)" }}>Fluid Tech</span>.
                         </motion.h2>
@@ -101,13 +103,13 @@ const AboutPage = () => {
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '80px',
-                    flexDirection: window.innerWidth < 1100 ? 'column-reverse' : 'row-reverse'
+                    gap: isMobile ? '40px' : '80px',
+                    flexDirection: isMobile ? 'column' : 'row-reverse'
                 }}>
-                    <div style={{ flex: 1 }}>
-                        <MissionCore />
+                    <div style={{ flex: 1, width: '100%' }}>
+                        <MissionCore isMobile={isMobile} />
                     </div>
-                    <div style={{ flex: 1, textAlign: window.innerWidth < 1100 ? 'center' : 'right' }}>
+                    <div style={{ flex: 1, textAlign: isMobile ? 'center' : 'right' }}>
                         <motion.h4
                             initial={{ opacity: 0, x: 20 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -118,7 +120,7 @@ const AboutPage = () => {
                         <motion.h2
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            style={{ fontSize: "3.5rem", fontWeight: "900", color: "white", marginBottom: "30px", letterSpacing: "-2px" }}
+                            style={{ fontSize: isMobile ? "2.2rem" : "3.5rem", fontWeight: "900", color: "white", marginBottom: "30px", letterSpacing: isMobile ? "0px" : "-2px" }}
                         >
                             Engineering <span style={{ color: "#00f2ea" }}>Absolute Stability</span>.
                         </motion.h2>
@@ -134,8 +136,8 @@ const AboutPage = () => {
             </section>
 
             {/* Company Story / Leadership */}
-            <section style={{ padding: "100px 5%", background: "rgba(0,0,0,0.2)" }}>
-                <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "center" }}>
+            <section style={{ padding: "80px 5%", background: "rgba(0,0,0,0.2)" }}>
+                <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -154,7 +156,8 @@ const AboutPage = () => {
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         style={{
-                            height: "400px",
+                            height: isMobile ? "300px" : "400px",
+                            width: "100%",
                             background: "linear-gradient(45deg, rgba(240, 90, 40, 0.1), rgba(0, 242, 234, 0.1))",
                             borderRadius: "30px",
                             display: "flex",
@@ -188,7 +191,7 @@ export default AboutPage;
 /**
  * SPECTRAL IRIS - Technical Vision Visualization
  */
-const SpectralIris = () => {
+const SpectralIris = ({ isMobile }) => {
     return (
         <div style={{
             width: '400px',
@@ -214,7 +217,7 @@ const SpectralIris = () => {
             />
 
             {/* Multi-Blade Aperture Mechanics */}
-            <div style={{ position: 'relative', width: '250px', height: '250px' }}>
+            <div style={{ position: 'relative', width: isMobile ? '180px' : '250px', height: isMobile ? '180px' : '250px' }}>
                 {[...Array(8)].map((_, i) => (
                     <motion.div
                         key={i}
@@ -266,7 +269,7 @@ const SpectralIris = () => {
 /**
  * MISSION CORE - Technical Mission Visualization
  */
-const MissionCore = () => {
+const MissionCore = ({ isMobile }) => {
     return (
         <div style={{
             width: '400px',
@@ -282,8 +285,8 @@ const MissionCore = () => {
                 animate={{ scale: [1, 1.05, 1] }}
                 transition={{ duration: 3, repeat: Infinity }}
                 style={{
-                    width: '280px',
-                    height: '280px',
+                    width: isMobile ? '200px' : '280px',
+                    height: isMobile ? '200px' : '280px',
                     background: 'rgba(0, 242, 234, 0.03)',
                     border: '1px solid rgba(0, 242, 234, 0.2)',
                     clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)',
@@ -297,8 +300,8 @@ const MissionCore = () => {
                     animate={{ rotate: -360 }}
                     transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                     style={{
-                        width: '180px',
-                        height: '180px',
+                        width: isMobile ? '120px' : '180px',
+                        height: isMobile ? '120px' : '180px',
                         border: '2px solid #00f2ea',
                         borderRadius: '40px',
                         display: 'flex',

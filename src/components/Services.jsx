@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaServer, FaShieldAlt, FaCloud, FaDatabase, FaUsers, FaBullseye, FaArrowRight } from "react-icons/fa";
+import useMobile from "../hooks/useMobile";
 
 // Enterprise Service Data
 const servicesData = [
@@ -37,8 +38,9 @@ const servicesData = [
 ];
 
 const Services = () => {
+    const isMobile = useMobile();
     return (
-        <section id="services" style={{ padding: "120px 5%", position: "relative", minHeight: "100vh" }}>
+        <section id="services" style={{ padding: isMobile ? "80px 5%" : "120px 5%", position: "relative", minHeight: "100vh" }}>
             <div className="container" style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
                 {/* Header with Animated Gradient Text */}
@@ -50,10 +52,10 @@ const Services = () => {
                 >
                     <motion.h2
                         style={{
-                            fontSize: "3rem",
+                            fontSize: isMobile ? "2rem" : "3rem",
                             marginBottom: "1rem",
                             color: "white",
-                            letterSpacing: "-1px",
+                            letterSpacing: isMobile ? "0px" : "-1px",
                             fontFamily: "Orbitron, sans-serif",
                             display: "inline-block",
                             background: "linear-gradient(90deg, #ffffff, #a5f3fc, #ffffff)",
@@ -83,11 +85,11 @@ const Services = () => {
                 {/* Floating Glass Grid */}
                 <div style={{
                     display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(360px, 1fr))",
-                    gap: "30px",
+                    gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(350px, 1fr))",
+                    gap: isMobile ? "20px" : "50px"
                 }}>
                     {servicesData.map((service, index) => (
-                        <ServicePanel key={index} service={service} index={index} />
+                        <ServicePanel key={index} service={service} index={index} isMobile={isMobile} />
                     ))}
                 </div>
             </div>
@@ -95,7 +97,7 @@ const Services = () => {
     );
 };
 
-const ServicePanel = ({ service, index }) => {
+const ServicePanel = ({ service, index, isMobile }) => {
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -128,7 +130,7 @@ const ServicePanel = ({ service, index }) => {
                     boxShadow: "0 10px 30px rgba(0,0,0,0.3)",
                     display: "flex",
                     flexDirection: "column",
-                    padding: "3rem 2.5rem",
+                    padding: isMobile ? "1.5rem 1rem" : "3rem 2.5rem",
                     transition: "all 0.4s cubic-bezier(0.25, 1, 0.5, 1)"
                 }}
                 whileHover={{
@@ -156,26 +158,26 @@ const ServicePanel = ({ service, index }) => {
 
                 {/* Orb Icon */}
                 <div style={{
-                    width: "70px",
-                    height: "70px",
+                    width: isMobile ? "50px" : "70px",
+                    height: isMobile ? "50px" : "70px",
                     borderRadius: "50%",
                     background: "radial-gradient(circle at center, rgba(240, 90, 40, 0.25), transparent 70%)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    marginBottom: "2rem",
+                    marginBottom: isMobile ? "1rem" : "2rem",
                     border: "1px solid rgba(240, 90, 40, 0.1)",
                     boxShadow: "0 0 15px rgba(240, 90, 40, 0.05)"
                 }}>
-                    <span style={{ fontSize: "1.8rem", color: "var(--primary-energy)", filter: "drop-shadow(0 0 5px rgba(240,90,40,0.5))" }}>
+                    <span style={{ fontSize: isMobile ? "1.4rem" : "1.8rem", color: "var(--primary-energy)", filter: "drop-shadow(0 0 5px rgba(240,90,40,0.5))" }}>
                         {service.icon}
                     </span>
                 </div>
 
                 <h3 style={{
-                    fontSize: "1.6rem",
+                    fontSize: isMobile ? "1.2rem" : "1.6rem",
                     color: "white",
-                    marginBottom: "1rem",
+                    marginBottom: isMobile ? "0.5rem" : "1rem",
                     fontFamily: "Orbitron, sans-serif",
                     letterSpacing: "0.5px"
                 }}>
@@ -183,10 +185,10 @@ const ServicePanel = ({ service, index }) => {
                 </h3>
 
                 <p style={{
-                    fontSize: "1rem",
+                    fontSize: isMobile ? "0.85rem" : "1rem",
                     color: "rgba(255, 255, 255, 0.65)",
                     lineHeight: "1.7",
-                    marginBottom: "2.5rem",
+                    marginBottom: isMobile ? "1.5rem" : "2.5rem",
                     flex: 1
                 }}>
                     {service.description}
@@ -198,7 +200,7 @@ const ServicePanel = ({ service, index }) => {
                     gap: "10px",
                     color: "var(--primary-energy)",
                     fontWeight: "700",
-                    fontSize: "0.9rem",
+                    fontSize: isMobile ? "0.8rem" : "0.9rem",
                     textTransform: "uppercase",
                     letterSpacing: "1px",
                     cursor: "pointer"

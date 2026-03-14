@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import VantaGlobe from "./VantaGlobe";
+import useMobile from "../hooks/useMobile";
 
 const taglines = [
     "Empowering Your Digital Future",
@@ -10,6 +11,7 @@ const taglines = [
 ];
 
 const Hero = () => {
+    const isMobile = useMobile();
     const [index, setIndex] = useState(0);
 
     useEffect(() => {
@@ -28,9 +30,9 @@ const Hero = () => {
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "flex-start", // Changed to flex-start for left alignment
+                justifyContent: isMobile ? "center" : "flex-start",
                 overflow: "hidden",
-                paddingTop: "80px", // Account for fixed navbar to visually center content
+                paddingTop: isMobile ? "60px" : "80px",
                 boxSizing: "border-box",
                 userSelect: "none",
                 WebkitUserSelect: "none",
@@ -40,12 +42,12 @@ const Hero = () => {
         >
             <VantaGlobe />
 
-            <div style={{ textAlign: "left", zIndex: 1, padding: "0 5%", maxWidth: "800px" }}> {/* Left align, padding, maxWidth */}
+            <div style={{ textAlign: isMobile ? "center" : "left", zIndex: 1, padding: isMobile ? "0 20px" : "0 5%", maxWidth: "800px" }}>
                 {/* <h2 style={{ fontSize: "1.5rem", color: "#00f2ea", marginBottom: "1rem", letterSpacing: "2px", textTransform: "uppercase" }}>
                     MonkNetworks
                 </h2> */}
 
-                <div style={{ height: "100px", display: "flex", alignItems: "center", justifyContent: "flex-start" }}> {/* Left align content */}
+                <div style={{ height: isMobile ? "120px" : "100px", display: "flex", alignItems: "center", justifyContent: isMobile ? "center" : "flex-start" }}>
                     <AnimatePresence mode="wait">
                         <motion.h1
                             key={index}
@@ -54,12 +56,13 @@ const Hero = () => {
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5 }}
                             style={{
-                                fontSize: "4rem",
+                                fontSize: isMobile ? "2.5rem" : "4rem",
                                 fontWeight: "800",
                                 background: "linear-gradient(to bottom, #ffffff, #a0a0a0)",
                                 WebkitBackgroundClip: "text",
                                 WebkitTextFillColor: "transparent",
-                                lineHeight: 1.2
+                                lineHeight: 1.2,
+                                margin: 0
                             }}
                         >
                             {taglines[index]}
@@ -67,7 +70,7 @@ const Hero = () => {
                     </AnimatePresence>
                 </div>
 
-                <p style={{ marginTop: "2rem", fontSize: "1.2rem", maxWidth: "600px", margin: "2rem 0", color: "#d0d0d0" }}> {/* margin 2rem 0 for left align */}
+                <p style={{ marginTop: "2rem", fontSize: isMobile ? "1rem" : "1.2rem", maxWidth: "600px", margin: isMobile ? "2rem auto" : "2rem 0", color: "#d0d0d0" }}>
                     Providing top-tier server infrastructure and network management solutions for modern businesses.
                 </p>
 
