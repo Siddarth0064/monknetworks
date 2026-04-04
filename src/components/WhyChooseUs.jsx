@@ -5,9 +5,9 @@ import { FaProjectDiagram, FaUserTie, FaClock, FaRocket, FaShieldAlt, FaHandshak
 import useMobile from "../hooks/useMobile";
 
 const stats = [
-    { id: 1, number: 3500, label: "Projects", suffix: "+", icon: <FaProjectDiagram /> },
-    { id: 2, number: 350, label: "Clients", suffix: "+", icon: <FaUserTie /> },
-    { id: 3, number: 12, label: "Years", suffix: "+", icon: <FaClock /> },
+    { id: 1, number: 15, label: "Projects", suffix: "+", icon: <FaProjectDiagram /> },
+    { id: 2, number: 20, label: "Clients", suffix: "+", icon: <FaUserTie /> },
+    { id: 3, number: 10, label: "Years", suffix: "+", icon: <FaClock /> },
 ];
 
 const cards = [

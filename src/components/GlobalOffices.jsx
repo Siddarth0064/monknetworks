@@ -93,8 +93,8 @@ const GlobalOffices = () => {
             id: 1,
             name: "Monk Networks HQ",
             position: [12.9716, 77.5946],
-            address: "Level 12, Monk Towers\nOuter Ring Road, Marathahalli\nBangalore, Karnataka - 560037",
-            phone: "+91 80 4567 8900",
+            address: "No.112, AKR Tech Park, B and, 7th Mile Hosur Rd, Krishna Reddy Industrial Area, Bengaluru, Karnataka 560068.",
+            phone: "+91 93 80 38 7110",
             email: "bangalore@monknetworks.com",
             image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=400&q=80",
             type: "Global Headquarters"

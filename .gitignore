@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Build and production
+build/
+dist/
+*.zip
+_redirects

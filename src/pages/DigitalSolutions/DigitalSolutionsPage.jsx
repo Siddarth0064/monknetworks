@@ -6,10 +6,12 @@ import {
     FaReact, FaNodeJs, FaAws, FaDocker, FaDatabase, FaBolt
 } from 'react-icons/fa';
 import { SiVercel, SiNextdotjs, SiTailwindcss, SiPostgresql } from 'react-icons/si';
+import { useNavigate } from 'react-router-dom';
 import useMobile from '../../hooks/useMobile';
 
 const DigitalSolutionsPage = () => {
     const isMobile = useMobile();
+    const navigate = useNavigate();
     return (
         <div style={{ background: '#030305', color: 'white', minHeight: '100vh', paddingBottom: '100px' }}>
 
@@ -111,6 +113,7 @@ const DigitalSolutionsPage = () => {
                     Let's discuss how our technical expertise can drive your next digital transformation.
                 </p>
                 <motion.button
+                    onClick={() => navigate('/monknetworks/contact')}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     style={{

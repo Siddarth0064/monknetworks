@@ -48,8 +48,8 @@ const DigitalInfrastructure = () => {
                 initial={{ x: 0, scale: 1 }}
                 animate={{
                     x: stage >= 6 ? (isMobile ? '0%' : '-25%') : '0%', // No shift on mobile
-                    y: stage >= 6 ? (isMobile ? '15%' : '0%') : '0%',  // Shift down on mobile
-                    scale: stage >= 6 ? (isMobile ? 0.6 : 0.9) : 1.05   // Scale down more on mobile
+                    y: stage >= 6 ? (isMobile ? '-25%' : '0%') : '0%',  // Shift UP on mobile instead of down
+                    scale: stage >= 6 ? (isMobile ? 0.65 : 0.9) : 1.05   // Keep scaling balanced
                 }}
                 transition={{ duration: 1.5, ease: [0.4, 0, 0.2, 1] }} // Enterprise smooth curve
                 style={{

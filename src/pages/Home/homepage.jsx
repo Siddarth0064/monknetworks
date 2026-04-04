@@ -1,4 +1,4 @@
-import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import DigitalInfrastructure from '../../components/DigitalInfrastructure/DigitalInfrastructure';
 import Services from '../../components/Services';
 import AboutUs from '../../components/AboutUs';
@@ -8,6 +8,7 @@ import useMobile from '../../hooks/useMobile';
 
 const Homepage = () => {
     const isMobile = useMobile();
+    const navigate = useNavigate();
     return (
         <>
             {/* 1. Hero: Grid Intelligence */}
@@ -46,17 +47,20 @@ const Homepage = () => {
                     <p style={{ fontSize: "1.2rem", opacity: 0.8, marginBottom: "40px", maxWidth: "800px", margin: "0 auto 40px" }}>
                         Join hundreds of enterprises that trust Monk Networks for their mission-critical digital systems.
                     </p>
-                    <button style={{
-                        padding: "15px 40px",
-                        background: "var(--primary-energy)",
-                        color: "white",
-                        border: "none",
-                        borderRadius: "50px",
-                        fontSize: "1.1rem",
-                        fontWeight: "bold",
-                        cursor: "pointer",
-                        boxShadow: "0 10px 20px rgba(240, 90, 40, 0.3)"
-                    }}>
+                    <button 
+                        onClick={() => navigate('/monknetworks/contact')}
+                        style={{
+                            padding: "15px 40px",
+                            background: "var(--primary-energy)",
+                            color: "white",
+                            border: "none",
+                            borderRadius: "50px",
+                            fontSize: "1.1rem",
+                            fontWeight: "bold",
+                            cursor: "pointer",
+                            boxShadow: "0 10px 20px rgba(240, 90, 40, 0.3)"
+                        }}
+                    >
                         Get Started Now
                     </button>
                 </motion.div>

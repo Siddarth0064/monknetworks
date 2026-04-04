@@ -2,6 +2,7 @@ import CoreExpertise from '../../components/CoreExpertise';
 import { motion } from 'framer-motion';
 import { FaEye, FaRocket, FaHistory, FaUsers } from 'react-icons/fa';
 import useMobile from '../../hooks/useMobile';
+import monkLogo from '../../assets/monk-logo-bg.png';
 
 const AboutPage = () => {
     const isMobile = useMobile();
@@ -62,13 +63,13 @@ const AboutPage = () => {
             </section>
 
             {/* 2. SPECTRAL NARRATIVE (Vision & Mission) */}
-            <section style={{ padding: "100px 5%", maxWidth: "1400px", margin: "0 auto" }}>
+            <section style={{ padding: isMobile ? "60px 5%" : "100px 5%", maxWidth: "1400px", margin: "0 auto" }}>
                 {/* Vision Panoramic */}
                 <div style={{
                     display: 'flex',
                     alignItems: 'center',
                     gap: isMobile ? '40px' : '80px',
-                    marginBottom: isMobile ? '80px' : '150px',
+                    marginBottom: isMobile ? '60px' : '150px',
                     flexDirection: isMobile ? 'column' : 'row'
                 }}>
                     <div style={{ flex: 1, width: '100%' }}>
@@ -136,7 +137,7 @@ const AboutPage = () => {
             </section>
 
             {/* Company Story / Leadership */}
-            <section style={{ padding: "80px 5%", background: "rgba(0,0,0,0.2)" }}>
+            <section style={{ padding: isMobile ? "50px 5%" : "80px 5%", background: "rgba(0,0,0,0.2)" }}>
                 <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -166,10 +167,59 @@ const AboutPage = () => {
                             border: "1px solid rgba(255,255,255,0.1)"
                         }}
                     >
-                        <div style={{ textAlign: "center" }}>
-                            <FaUsers style={{ fontSize: "5rem", color: "var(--primary-energy)", marginBottom: "20px" }} />
-                            <h3 style={{ color: "white", fontSize: "1.5rem" }}>Proprietor & Leadership</h3>
-                            <p style={{ color: "rgba(255,255,255,0.6)" }}>Leading with integrity and innovation.</p>
+                        <div style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", padding: "0 20px", position: "relative", zIndex: 10 }}>
+                            <img src={monkLogo} alt="Monk Networks Logo" style={{ width: "160px", marginBottom: "25px", filter: "drop-shadow(0 0 20px rgba(0, 242, 234, 0.4))" }} />
+
+                            <motion.div
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true }}
+                                variants={{
+                                    hidden: { opacity: 0 },
+                                    visible: {
+                                        opacity: 1,
+                                        transition: { staggerChildren: 0.3 }
+                                    }
+                                }}
+                            >
+                                <motion.h3
+                                    variants={{
+                                        hidden: { opacity: 0, y: 10, scale: 0.95 },
+                                        visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
+                                    }}
+                                    style={{ color: "white", fontSize: "1.8rem", fontWeight: "900", letterSpacing: "2px", marginBottom: "15px", textTransform: "uppercase" }}
+                                >
+                                    Absolute <span style={{ color: "var(--primary-energy)", textShadow: "0 0 15px var(--primary-energy)" }}>Trust.</span>
+                                </motion.h3>
+
+                                <motion.p
+                                    variants={{
+                                        hidden: { opacity: 0, filter: "blur(10px)" },
+                                        visible: { opacity: 1, filter: "blur(0px)", transition: { duration: 1 } }
+                                    }}
+                                    style={{ color: "rgba(255,255,255,0.7)", fontSize: "1.3rem", fontWeight: "300", letterSpacing: "1px", margin: "0 0 10px 0" }}
+                                >
+                                    Impenetrable. Unyielding.
+                                </motion.p>
+
+                                <motion.div
+                                    variants={{
+                                        hidden: { opacity: 0, scaleX: 0 },
+                                        visible: { opacity: 1, scaleX: 1, transition: { duration: 0.8, delay: 0.5 } }
+                                    }}
+                                    style={{ width: "40px", height: "2px", background: "#00f2ea", margin: "15px auto", boxShadow: "0 0 10px #00f2ea" }}
+                                />
+
+                                <motion.p
+                                    variants={{
+                                        hidden: { opacity: 0, y: 10 },
+                                        visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.8 } }
+                                    }}
+                                    style={{ color: "white", fontSize: "1.1rem", fontWeight: "700", letterSpacing: "3px", textTransform: "uppercase" }}
+                                >
+                                    Your Enterprise is Safe.
+                                </motion.p>
+                            </motion.div>
                         </div>
                     </motion.div>
                 </div>
@@ -177,8 +227,8 @@ const AboutPage = () => {
 
             {/* Expertise Timeline */}
             <div id="expertise">
-                <div style={{ textAlign: "center", padding: "80px 0 0" }}>
-                    <h2 style={{ fontSize: "3rem", color: "white" }}>Core <span style={{ color: "var(--primary-energy)" }}>Expertise</span></h2>
+                <div style={{ textAlign: "center", padding: isMobile ? "40px 0 0" : "80px 0 0" }}>
+                    <h2 style={{ fontSize: isMobile ? "2.5rem" : "3rem", color: "white" }}>Core <span style={{ color: "var(--primary-energy)" }}>Expertise</span></h2>
                 </div>
                 <CoreExpertise />
             </div>
@@ -194,8 +244,8 @@ export default AboutPage;
 const SpectralIris = ({ isMobile }) => {
     return (
         <div style={{
-            width: '400px',
-            height: '400px',
+            width: isMobile ? '300px' : '400px',
+            height: isMobile ? '300px' : '400px',
             margin: '0 auto',
             position: 'relative',
             display: 'flex',
@@ -272,8 +322,8 @@ const SpectralIris = ({ isMobile }) => {
 const MissionCore = ({ isMobile }) => {
     return (
         <div style={{
-            width: '400px',
-            height: '400px',
+            width: isMobile ? '300px' : '400px',
+            height: isMobile ? '300px' : '400px',
             margin: '0 auto',
             position: 'relative',
             display: 'flex',

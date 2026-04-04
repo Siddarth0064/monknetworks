@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaShieldAlt, FaCloud, FaServer, FaCogs, FaDatabase, FaArrowRight } from 'react-icons/fa';
+import { FaShieldAlt, FaCloud, FaServer, FaCogs, FaDatabase, FaArrowRight, FaNetworkWired } from 'react-icons/fa';
 import useMobile from '../../hooks/useMobile';
 
 const solutions = [
@@ -43,6 +43,16 @@ const solutions = [
         details: "We implement robust data pipelines and analytics engines that help you understand your business metrics and predict future trends with precision.",
         benefits: ["Predictive Analytics", "Data Warehouse Optimization", "Visual Insights Dashboards"],
         diagram: "data"
+    },
+    {
+        id: "networking-surveillance",
+        title: "Networking & Surveillance",
+        icon: <FaNetworkWired />,
+        color: "#ffc107",
+        desc: "Resilient physical layer connectivity & integrated enterprise surveillance.",
+        details: "We design, deploy, and maintain robust networking architectures and intelligent CCTV surveillance systems, ensuring uninterrupted digital operations and comprehensive physical security.",
+        benefits: ["Enterprise-Grade Cabling", "Intelligent CCTV Systems", "24/7 Field Maintenance"],
+        diagram: "network"
     },
     {
         id: "strategic-consulting",
